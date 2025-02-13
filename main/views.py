@@ -9,3 +9,8 @@ def login_view(request):
     return render(request, 'login.html')
 def galeria_view(request):
     return render(request, 'galeria.html')
+
+#test XD
+
+# def navbar_view(request):
+#     return render(request, 'navbar.html')
