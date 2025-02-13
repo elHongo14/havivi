@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../img/login/login_bg.png");
+    background-size: cover;
+}
+
+
+.window {
+    width: 60%;
+    height: 70%;
+    border-radius: 2vi;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    background: rgb(64,47,84);
+    background: linear-gradient(-61deg, rgba(64,47,84,0.9) 0%, rgba(141,103,186,0.9) 100%);
+}
+
+.row {
+    width: 100%;
+    height: 85%;
+}
+
+
+.havivi-container {
+    width: 100%;
+    height: 100%;
+    border-right: 3px solid #E173CB;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-container h1, p {
+    color: #FFD8E4;
+}
+
+h1 {
+    font-style: italic;
+    text-align: center;
+}
+
+p {
+    width: 100%;
+    font-family: Imprima;
+    margin-bottom: 0 !important;
+}
+
+.input-container {
+    width: 85%;
+}
+
+.havi-input {
+    width: 100%;
+    height: 50px;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-width: 3px;
+    border-color: #E173CB;
+
+    margin-bottom: 15px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    margin-block: 15px;
+}
+
+.login-button {
+    width: 100%;
+}
+
+.forgot-button {
+    width: 100%;
+}
+
+.click-text {
+    color: #FFC2FF;
+    font-style: italic;
+    text-align: center;
+}
+
+.click-text:hover {
+    color: #ff5dff;
+}
+
+.register-container {
+    text-align: center;
+}
+
+.register-container p {
+    color: #FFC2FF;
+}
+
+
+.btn-gradient {
+    background: linear-gradient(90deg, rgba(55, 43, 76, 0.5) 0%, rgba(129, 100, 178, 0.5) 100%);
+    color: white !important;
+}
+
+.btn-gradient:hover {
+    /* animation: btn_hover_scale 0.3s ease-out 0s forwards; */
+    transform: scale(1.05);
+    background: linear-gradient(90deg, rgba(55, 43, 76, 1) 0%, rgba(129, 100, 178, 1) 100%);
+    transition: 0.3s;
+}
+
+
+@keyframes btn_hover_scale {
+    0%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1.1);
+    }
+}
