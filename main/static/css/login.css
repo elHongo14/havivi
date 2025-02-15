@@ -27,9 +27,28 @@ body {
 
 
 .havivi-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
     border-right: 3px solid #E173CB;
+
+    font-family: Inclusive Sans;
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.havivi-container img {
+    width: 65%;
+    mix-blend-mode: overlay;
+}
+
+.havivi-slogan {
+    margin-top: 10px;
+    width: 80%;
 }
 
 .login-container {
@@ -69,9 +88,19 @@ p {
     border-width: 3px;
     border-color: #E173CB;
 
+    color: white;
+
     margin-bottom: 15px;
     background-color: rgba(0, 0, 0, 0.25);
 }
+
+.havi-input::-ms-reveal {
+    filter: invert(100%);
+}
+
+/* .havi-input:-webkit-autofill {
+    background-color: rgba(106, 55, 90, 0.25) !important;
+} */
 
 .buttons-container {
     display: flex;
