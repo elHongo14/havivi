@@ -1,14 +1,29 @@
-h1{
-    color: aqua;
-}
 section{
     background-image: linear-gradient(#402F54, #fff);
+}
+.btn-group{
+    border-radius: 20px;
 }
 .btn-sele{
     background-color: #8D67BA;
 }
 .img-gal{
-    width:90%;
-    height: 50%;
-    object-fit: cover;
+    width:20vw;
+    height: 35vh;
+}
+.img-comp{
+    height: 95vh;
+    width: auto;
+}
+.modal-dialog{
+    width: fit-content;
+    height: fit-content;
+}
+.col{
+    height: min-content;
+    width: min-content;
+    transition: 0.5s;
+}
+.col:hover{
+    box-shadow: 5px 5px 5px #4c4c4c;
 }

@@ -15,3 +15,10 @@ class Prueba(models.Model):
 
     def __str__(self):
         return self.nombre
+    
+class Galeria(models.Model):
+    nombre = models.CharField(max_length=205)
+    descripción = models.CharField(max_length=200)
+    img_ubi = models.CharField(max_length=200)
+    foto_bool = models.BooleanField(default=True)
+    link = models.CharField(max_length=200, default="")

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Galeria
 
 # Create your views here.
 
@@ -7,8 +8,12 @@ def home_view(request):
 
 def login_view(request):
     return render(request, 'login.html')
+
 def galeria_view(request):
-    return render(request, 'galeria.html')
+    galeria = Galeria.objects.all()
+    return render(request, 'galeria.html',{
+        'galeria' : galeria
+    })
 
 #test XD
 
