@@ -9,6 +9,14 @@
 {% endblock %}
 
 {% block content %}
+{% if messages %}
+<div class="alert alert-danger" style="margin: 20px;">
+    {% for message in messages %}
+    <p class="text-dark">{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
+
 <div class="window">
     <div class="row align-items-center">
         <div class="havivi-container col">
@@ -19,14 +27,15 @@
         </div>
         <div class="login-container col">
             <h1>Inicio de Sesión</h1>
-            <div class="input-container">
-                <p>Correo Electrónico</p>
-                    <input type="email" class="havi-input" id="">
+            <form class="input-container" method="post">
+                {% csrf_token %}
+                <p>Nombre de Usuario</p>
+                    <input type="text" class="havi-input" id="username" name="username" required>
                 <p>Contraseña</p>
-                    <input type="password" class="havi-input" id="">
+                    <input type="password" class="havi-input" id="password" name="password" required>
                 <div class="buttons-container">
                     <div class="login-button">
-                        <a class="btn btn-gradient btn-lg shadow border border-light-subtle" href="#" role="button">Iniciar Sesión</a>
+                        <button class="btn btn-gradient btn-lg shadow border border-light-subtle" type="submit" >Iniciar Sesión</button>
                     </div>
                     <div class="forgot-button">
                         <a href="" class="click-text">Olvidé mi contraseña</a>
@@ -35,7 +44,7 @@
                 <div class="register-container">
                     <p>¿Aún no tienes una cuenta? <a href="" class="click-text">Crea una</a></p>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
