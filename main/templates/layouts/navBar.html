@@ -14,7 +14,7 @@
             <ul class="nav text-center">
                 <li class="nav-item dropdown">
                     <button type="button" class="btn">
-                        Noticias
+                        <a class="text-black text-decoration-none" onclick="newsRed()">Noticias</a>
                     </button>
                 </li>
                 <li class="nav-item dropdown text-center">
@@ -40,7 +40,6 @@
             </ul>
         </div>
         {% if user.is_authenticated %}
-        <!-- <button id="inicio-btn" class="btn" type="submit" onclick="loginRedirect()">{{ user }}</button> -->
         <div class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -88,6 +87,9 @@
     }
     function homeRed(){
         document.location.href = "{% url 'main:home' %}"
+    }
+    function newsRed(){
+        document.location.href = "{% url 'news:noticias' %}"
     }
 </script>
 

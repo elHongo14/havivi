@@ -1,0 +1,140 @@
+.top-news-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: calc(550px + 1dvh);
+}
+
+.top-news-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.main-new {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+
+    width: 150%;
+    height: 100%;
+    position: relative;
+
+    background-color: rgb(62, 160, 205);
+}
+
+.sec-news {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.sec-new {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.top-new:hover {
+    cursor: pointer;
+}
+
+.new2 {
+    background-color: rgb(62, 205, 107);
+}
+
+.new3 {
+    background-color: rgb(203, 205, 62);
+}
+
+.tnew-text-container {
+    position: absolute;
+    margin: 1rem;
+}
+
+.new-info-container {
+    display: flex;
+    align-items: center;
+}
+
+.new-type-box {
+    text-decoration: none;
+    padding-inline: 1rem;
+    padding-block: 0.2rem;
+    margin-right: 0.75rem;
+    background-color: #000000;
+}
+
+.new-type-box:hover {
+    cursor: pointer;
+}
+
+.new-type {
+    font-family: "Inter";
+    font-weight: bold;
+    color: white;
+
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+.type-education {
+    background-color: #F5BE0B;
+}
+
+.type-ambient {
+    background-color: #43B82E;
+}
+
+.type-health {
+    background-color: #73A1E1;
+}
+
+.type-work {
+    background-color: #E173CB;
+}
+
+.type-culture {
+    background-color: #C12838;
+}
+
+.tnew-title {
+    font-family: "Inria Sans";
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
+}
+
+.tnew-date {
+    font-family: "Imprima";
+    color: white;
+    text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
+}
+
+
+@media only screen and (max-width:1000px) {
+    .top-news-container {
+        flex-direction: column;
+        height: calc(950px + 1dvh);
+    }
+    
+    .main-new {
+        width: 100%;
+        height: 150%;
+    }
+
+    .sec-news {
+        flex-direction: row;
+    }
+}
