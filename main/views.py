@@ -48,6 +48,20 @@ def galeria_view(request):
         'galeria' : galeria
     })
 
+def bolsa_view(request):
+    return render(request, 'bolsa_de_empleo.html')
+
+def capacitaciones_view(request):
+    return render(request, 'capacitaciones.html')
+
+def donaciones_view(request):
+    return render(request, 'donaciones.html')
+
+def reportes_view(request):
+    return render(request, 'reportes.html')
+
+def solicitudes_view(request):
+    return render(request, 'solicitudes.html')
 #test XD
 
 # def navbar_view(request):

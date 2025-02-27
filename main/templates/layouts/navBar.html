@@ -23,19 +23,19 @@
                     </button>
                 </li>
                 <li class="nav-item dropdown">
-                    <button type="button" class="btn">
-                        Solicitudes
-                    </button>
+                    <button type="button" class="btn" onclick="solicitudesRed()">Solicitudes</button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn">
-                        <a class="text-black text-decoration-none" href="#">Capacitaciones</a>
-                    </button>
+                    <button type="button" class="btn" onclick="capacitacionesRed()">Capacitaciones</button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn">
-                        <a class="text-black text-decoration-none" href="#">Documentación</a>
-                    </button>
+                    <button type="button" class="btn" onclick="empleoRed()">Bolsa de empleo</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn" onclick="reportesRed()">Reportes</button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn" onclick="donacionesRed()">Donaciones</button>
                 </li>
             </ul>
         </div>
@@ -71,7 +71,10 @@
             </div> -->
         </div>
         {% else %}
-        <button id="inicio-btn" class="btn" type="submit" onclick="loginRedirect()">Iniciar sesión</button>
+        <div>
+            <button id="inicio-btn" class="btn" type="submit" onclick="loginRedirect()">Iniciar sesión</button>
+            <button id="reg-btn" type="button" class="btn ml-1">¡Registrate!</button>
+        </div>
         {% endif %}
     </div>
 </nav>
@@ -90,6 +93,21 @@
     }
     function newsRed(){
         document.location.href = "{% url 'news:noticias' %}"
+    }
+    function solicitudesRed(){
+        document.location.href = "{% url 'main:solicitudes' %}"
+    }
+    function reportesRed(){
+        document.location.href = "{% url 'main:reportes' %}"
+    }
+    function donacionesRed(){
+        document.location.href = "{% url 'main:donaciones' %}"
+    }
+    function empleoRed(){
+        document.location.href = "{% url 'main:empleo' %}"
+    }
+    function capacitacionesRed(){
+        document.location.href = "{% url 'main:capacitaciones' %}"
     }
 </script>
 
