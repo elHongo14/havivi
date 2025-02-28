@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 from .models import Galeria
-from .forms import LoginForm
+from .forms import LoginForm, solicitudForm
 
 # Create your views here.
 
@@ -61,7 +61,16 @@ def reportes_view(request):
     return render(request, 'reportes.html')
 
 def solicitudes_view(request):
-    return render(request, 'solicitudes.html')
+    #if request.method == 'POST':
+    #    form = solicitudForm(request.POST)
+    #    if form.is_valid():
+    #        messages.add_message = "valido"
+    #   else:
+    #        messages.error = "invalido"
+    context = {
+        
+    }
+    return render(request, 'solicitudes.html',context)
 #test XD
 
 # def navbar_view(request):

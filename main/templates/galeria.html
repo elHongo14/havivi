@@ -80,7 +80,7 @@
     const rad2 = document.getElementById("btnradio2");
     const rad3 = document.getElementById("btnradio3");
     
-    var func = (value) =>{
+    var filtro = (value) =>{
         switch (value.originalTarget.value) {
             case "Todo":
             for(let i=0;i<fotos.length;i++){
@@ -108,7 +108,7 @@
                 break;
         }
     }
-    rad1.addEventListener("click",func);
-    rad2.addEventListener("click",func);
-    rad3.addEventListener("click",func);
+    rad1.addEventListener("click",filtro);
+    rad2.addEventListener("click",filtro);
+    rad3.addEventListener("click",filtro);
 </script>
