@@ -3,7 +3,18 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from .models import (
+    Noticia,
+    Tipo_Noticia,
+)
+
 # Create your views here.
 
 def news_view(request):
-    return render(request, 'news.html')
+    recent_news = Noticia.objects.all()[0:10]
+
+    context = {
+        'recent_news': recent_news
+    }
+
+    return render(request, 'news.html', context)

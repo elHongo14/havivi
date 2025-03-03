@@ -34,6 +34,7 @@
 
 .sec-new {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: end;
     width: 100%;
@@ -65,8 +66,8 @@
 
 .new-type-box {
     text-decoration: none;
-    padding-inline: 1rem;
-    padding-block: 0.2rem;
+    padding-inline: 0.75rem;
+    padding-block: 0.3rem;
     margin-right: 0.75rem;
     background-color: #000000;
 }
@@ -79,6 +80,7 @@
     font-family: "Inter";
     font-weight: bold;
     color: white;
+    margin-bottom: 0;
 
     -webkit-touch-callout: none; 
     -webkit-user-select: none; 
@@ -113,6 +115,8 @@
     font-style: italic;
     font-weight: bold;
     color: white;
+    text-overflow: ellipsis;
+    margin-top: 0.25rem;
     text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
 }
 

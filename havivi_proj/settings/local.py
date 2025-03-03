@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor', 
+    'ckeditor_uploader', 
+    'django_cleanup', 
     'main',
     'news',
 ]
@@ -54,6 +57,7 @@ MIDDLEWARE = [
 # SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 SESSION_ENGINE = "django.contrib.sessions.backends.cache" 
 
+CKEDITOR_UPLOAD_PATH = "ckeditor_uploads/"
 
 ROOT_URLCONF = 'havivi_proj.urls'
 
@@ -111,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
@@ -122,6 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = 'media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

@@ -16,13 +16,17 @@
         <div class="tnew-text-container">
             <div class="new-info-container">
                 <a href="" class="new-type-box type-ambient">
+                    {% if recent_news.0 %}
+                    <h5 class="new-type">{{ recent_news.0.tipo_noticia }}</h5>
+                    {% else %}
                     <h5 class="new-type">Tipo</h5>
+                    {% endif %}
                 </a>
-                <h5 class="tnew-date">Fecha</h5>
+                <h5 class="tnew-date">{{ recent_news.0.fecha_actualizacion }}</h5>
             </div>
-            <h1 class="tnew-title">Titular de Prueba 1</h1>
+            <h1 class="tnew-title">{{ recent_news.0.titular }}</h1>
         </div>
-        <img src="{% static 'img/news/dummy_new.png' %}" alt="">
+        <img src="{{ recent_news.0.imagen_principal.url }}" alt="">
         
     </div>
     <div class="sec-news">
@@ -30,25 +34,25 @@
             <div class="tnew-text-container">
                 <div class="new-info-container">
                     <a href="" class="new-type-box type-culture">
-                        <h5 class="new-type">Tipo</h5>
+                        <h5 class="new-type">{{ recent_news.1.tipo_noticia }}</h5>
                     </a>
-                    <h5 class="tnew-date">Fecha</h5>
+                    <h5 class="tnew-date">{{ recent_news.1.fecha_actualizacion }}</h5>
                 </div>
-                <h1 class="tnew-title">Titular de Prueba 2</h1>
+                <h4 class="tnew-title">{{ recent_news.1.titular }}</h4>
             </div>
-            <img src="{% static 'img/news/dummy_new.png' %}" alt="">
+            <img src="{{ recent_news.1.imagen_principal.url }}" alt="">
         </div>
         <div class="sec-new top-new new3">
             <div class="tnew-text-container">
                 <div class="new-info-container">
                     <a href="" class="new-type-box type-education">
-                        <h5 class="new-type">Tipo</h5>
+                        <h5 class="new-type">{{ recent_news.2.tipo_noticia }}</h5>
                     </a>
-                    <h5 class="tnew-date">Fecha</h5>
+                    <h5 class="tnew-date">{{ recent_news.2.fecha_actualizacion }}</h5>
                 </div>
-                <h1 class="tnew-title">Titular de Prueba 3</h1>
+                <h4 class="tnew-title">{{ recent_news.2.titular }}</h4>
             </div>
-            <img src="{% static 'img/news/dummy_new.png' %}" alt="">
+            <img src="{{ recent_news.2.imagen_principal.url }}" alt="">
         </div>
     </div>
 </div>
