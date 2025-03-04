@@ -12,15 +12,11 @@
 
 {% block content %}
 <div class="top-news-container">
-    <div class="main-new top-new">
+    <div class="main-new top-new" onclick="redirect_detail('{{ recent_news.0.id }}')">
         <div class="tnew-text-container">
             <div class="new-info-container">
-                <a href="" class="new-type-box type-ambient">
-                    {% if recent_news.0 %}
+                <a href="" class="new-type-box {{recent_news.0.tipo_noticia}}">
                     <h5 class="new-type">{{ recent_news.0.tipo_noticia }}</h5>
-                    {% else %}
-                    <h5 class="new-type">Tipo</h5>
-                    {% endif %}
                 </a>
                 <h5 class="tnew-date">{{ recent_news.0.fecha_actualizacion }}</h5>
             </div>
@@ -30,43 +26,81 @@
         
     </div>
     <div class="sec-news">
-        <div class="sec-new top-new new2">
+        <div class="sec-new top-new new2" onclick="redirect_detail('{{ recent_news.1.id }}')">
             <div class="tnew-text-container">
                 <div class="new-info-container">
-                    <a href="" class="new-type-box type-culture">
+                    <a href="" class="new-type-box {{recent_news.1.tipo_noticia}}">
                         <h5 class="new-type">{{ recent_news.1.tipo_noticia }}</h5>
                     </a>
                     <h5 class="tnew-date">{{ recent_news.1.fecha_actualizacion }}</h5>
                 </div>
-                <h4 class="tnew-title">{{ recent_news.1.titular }}</h4>
+                <h3 class="tnew-title">{{ recent_news.1.titular }}</h3>
             </div>
             <img src="{{ recent_news.1.imagen_principal.url }}" alt="">
         </div>
-        <div class="sec-new top-new new3">
+        <div class="sec-new top-new new3" onclick="redirect_detail('{{ recent_news.2.id }}')">
             <div class="tnew-text-container">
                 <div class="new-info-container">
-                    <a href="" class="new-type-box type-education">
+                    <a href="" class="new-type-box {{recent_news.3.tipo_noticia}}">
                         <h5 class="new-type">{{ recent_news.2.tipo_noticia }}</h5>
                     </a>
                     <h5 class="tnew-date">{{ recent_news.2.fecha_actualizacion }}</h5>
                 </div>
-                <h4 class="tnew-title">{{ recent_news.2.titular }}</h4>
+                <h3 class="tnew-title">{{ recent_news.2.titular }}</h3>
             </div>
             <img src="{{ recent_news.2.imagen_principal.url }}" alt="">
         </div>
+    </div>
+</div>
+<div class="news-container">
+    <div class="new-row">
+        {% for new in recent_news|slice:"3:" %}
+        <div class="new">
+            <div class="new-img-container">
+                <img src="{{ new.imagen_principal.url }}">
+            </div>
+            <div class="new-text-container">
+                <div class="new-info-container lower-news-info">
+                    <a href="" class="new-type-box {{new.tipo_noticia}}">
+                        <h5 class="new-type">{{ new.tipo_noticia }}</h5>
+                    </a>
+                    <h5 class="new-date">{{ new.fecha_actualizacion }}</h5>
+                </div>
+                <h3 class="new-title"><a href="{% url 'news:n_detail' new.id %}">{{ new.titular }}</a></h3>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- <div class="new">
+            <div class="new-img-container">
+                <img src="{{ recent_news.1.imagen_principal.url }}">
+            </div>
+            <div class="new-text-container">
+                <div class="new-info-container lower-news-info">
+                    <a href="" class="new-type-box type-ambient">
+                        <h5 class="new-type">{{ recent_news.1.tipo_noticia }}</h5>
+                    </a>
+                    <h5 class="new-date">{{ recent_news.1.fecha_actualizacion }}</h5>
+                </div>
+                <h3 class="new-title">{{ recent_news.1.titular }}</h3>
+            </div>
+        </div> -->
     </div>
 </div>
 {% endblock %}
 
 
 <script>
-    const top_new = document.getElementsByClassName("top-new");
+    // const top_new = document.getElementsByClassName("top-new");
 
-    document.addEventListener("DOMContentLoaded",()=>{
-        for (let i = 0; i < top_new.length; i++) {
-            top_new[i].addEventListener('click',()=>{
-                document.location.href = "{% url 'main:home' %}"
-            })
-        }
-    });
+    // document.addEventListener("DOMContentLoaded",()=>{
+    //     for (let i = 0; i < top_new.length; i++) {
+    //         top_new[i].addEventListener('click',()=>{
+    //             document.location.href = "{% url 'main:home' %}";
+    //         })
+    //     }
+    // });
+
+    function redirect_detail(url){
+        document.location.href = "n_detail/" + url;
+    }
 </script>

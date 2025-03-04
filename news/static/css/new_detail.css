@@ -1,0 +1,105 @@
+body {
+    background: rgb(125,75,135);
+    background: linear-gradient(-60deg, rgba(125,75,135,1) 0%, rgba(60,43,70,1) 100%);
+}
+
+.main-page {
+    display: flex;
+}
+
+.misc-container {
+    background-color: rgba(0, 0, 0, 0);
+    width: 40%;
+}
+
+.new-container {
+    width: 100%;
+    margin-block: 1.5rem;
+    margin-inline: 5rem;
+}
+
+.new-info-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.new-date {
+    font-family: "Imprima";
+    color: white;
+    margin-bottom: 0;
+}
+
+.new-title {
+    font-family: "Inria Sans";
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    text-overflow: ellipsis;
+    margin-top: 0.25rem;
+}
+
+.new-img-container {
+    height: calc(350px + 1dvh);
+    min-width: 100%;
+    margin-bottom: 1rem;
+
+    box-shadow: 0.5rem 0.5rem 0 rgba(255, 255, 255, 0.25);
+}
+
+.new-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.new-body {
+    color: white;
+    font-family: 'Inika';
+}
+
+.new-type-box {
+    text-decoration: none;
+    padding-inline: 0.75rem;
+    padding-block: 0.3rem;
+    margin-right: 0.75rem;
+    background-color: #000000;
+}
+
+.new-type-box:hover {
+    cursor: pointer;
+}
+
+.new-type {
+    font-family: "Inter";
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0;
+
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none;
+}
+
+.educación {
+    background-color: #F5BE0B;
+}
+
+.ambiente {
+    background-color: #43B82E;
+}
+
+.salud {
+    background-color: #73A1E1;
+}
+
+.trabajo {
+    background-color: #E173CB;
+}
+
+.cultura {
+    background-color: #C12838;
+}

@@ -1,9 +1,13 @@
+body {
+    background-color: #efe7ff !important;
+}
+
 .top-news-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    height: calc(550px + 1dvh);
+    height: calc(500px + 1dvh);
 }
 
 .top-news-container img {
@@ -59,9 +63,93 @@
     margin: 1rem;
 }
 
+.tnew-date {
+    font-family: "Imprima";
+    color: white;
+    margin-bottom: 0;
+    text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
+}
+
+.tnew-title {
+    font-family: "Inria Sans";
+    font-style: italic;
+    font-weight: bold;
+    color: white;
+    text-overflow: ellipsis;
+    margin-top: 0.25rem;
+    text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
+}
+
+.tnew-title:hover {
+    text-decoration: underline;
+}
+
+.new-title {
+    font-family: "Inria Sans";
+    font-style: italic;
+    font-weight: bold;
+    color: black;
+    text-overflow: ellipsis;
+    margin-top: 0.25rem;
+}
+
+
+.new-title a {
+    text-decoration: none !important;
+    color: rgba(0, 0, 0, 1) !important;
+}
+
+.new-title a:hover {
+    text-decoration: underline !important;
+}
+
+.new-text-container {
+    width: 75%;
+    overflow: hidden;
+}
+
 .new-info-container {
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.lower-news-info {
+    flex-direction: row;
+}
+
+.new-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-block: 1.5rem;
+    height: calc(175px + 1dvh);
+}
+
+.new {
+    display: flex;
+    flex-basis: 45%;
+    margin-inline: 1.5rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 100%;
+}
+
+.new-img-container {
+    height: 100%;
+    min-width: calc(300px * 1dvw);
+    margin-right: 1rem;
+}
+
+.new-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.new-date {
+    font-family: "Imprima";
+    color: black;
+    margin-bottom: 0;
 }
 
 .new-type-box {
@@ -90,40 +178,24 @@
     user-select: none;
 }
 
-.type-education {
+.educación {
     background-color: #F5BE0B;
 }
 
-.type-ambient {
+.ambiente {
     background-color: #43B82E;
 }
 
-.type-health {
+.salud {
     background-color: #73A1E1;
 }
 
-.type-work {
+.trabajo {
     background-color: #E173CB;
 }
 
-.type-culture {
+.cultura {
     background-color: #C12838;
-}
-
-.tnew-title {
-    font-family: "Inria Sans";
-    font-style: italic;
-    font-weight: bold;
-    color: white;
-    text-overflow: ellipsis;
-    margin-top: 0.25rem;
-    text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
-}
-
-.tnew-date {
-    font-family: "Imprima";
-    color: white;
-    text-shadow: 0.2rem 0.2rem 5px rgba(0, 0, 0, 0.7);
 }
 
 
@@ -140,5 +212,12 @@
 
     .sec-news {
         flex-direction: row;
+    }
+}
+
+@media only screen and (max-width:1100px) {
+    .lower-news-info{
+        flex-direction: column;
+        align-items: baseline !important;
     }
 }

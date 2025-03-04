@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor', 
     'ckeditor_uploader', 
     'django_cleanup', 
+    'django_bleach', 
     'main',
     'news',
 ]
@@ -134,3 +135,10 @@ MEDIA_ROOT = 'media/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Which HTML tags are allowed
+BLEACH_ALLOWED_TAGS = ['p', 'h3', 'h4', 'em', 'strong', 'a', 'ul', 'ol', 'li', 'blockquote']
+# Which HTML attributes are allowed
+BLEACH_ALLOWED_ATTRIBUTES = ['title', 'name']
+BLEACH_STRIP_TAGS = True

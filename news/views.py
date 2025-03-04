@@ -11,10 +11,21 @@ from .models import (
 # Create your views here.
 
 def news_view(request):
-    recent_news = Noticia.objects.all()[0:10]
+    recent_news = Noticia.objects.all().order_by('-fecha_actualizacion')[0:10]
 
     context = {
         'recent_news': recent_news
     }
 
     return render(request, 'news.html', context)
+
+def new_detail_view(request, new):
+    this_new = Noticia.objects.get(pk=new)
+    recent_news = Noticia.objects.all().order_by('-fecha_actualizacion')[0:10]
+
+    context = {
+        'this_new': this_new,
+        'recent_news': recent_news,
+    }
+
+    return render(request, 'new_detail.html', context)
