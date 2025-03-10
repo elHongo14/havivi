@@ -23,7 +23,15 @@
         </div>
         <h1 class="new-title">{{ this_new.titular }}</h1>
         <div class="new-img-container">
+            {% if recent_news.0.imagen_principal %}
             <img src="{{ this_new.imagen_principal.url }}">
+            {% else %}
+            <img src="/media/dummy_img.jpg" alt="">
+            {% endif %}
+        </div>
+        
+        <div class="creator-container">
+            <h5>Redactada por <a href="">{{ this_new.autor }}</a></h5>
         </div>
         
         <div class="new-body">

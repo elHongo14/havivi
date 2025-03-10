@@ -12,6 +12,21 @@ body {
     width: 40%;
 }
 
+.creator-container {
+    padding-block: 0.75rem;
+    color: white;
+    font-family: 'Inria Sans';
+}
+
+.creator-container h5 {
+    font-weight: 300;
+}
+
+.creator-container a {
+    font-style: italic;
+    color: white !important;
+}
+
 .new-container {
     width: 100%;
     margin-block: 1.5rem;

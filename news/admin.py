@@ -17,6 +17,17 @@ class NoticiaAdmin(admin.ModelAdmin):
         )
     search_fields = ('titular', 'autor', 'tipo_noticia',)
 
+    def save_model(self, request, obj, form, change):
+        if not obj.autor:
+            obj.autor = request.user
+        obj.save()
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(autor=request.user)
+
 class TipoNoticiaAdmin(admin.ModelAdmin):
     list_display = (
         'nombre_tipo',

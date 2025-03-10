@@ -20,7 +20,7 @@ class Tipo_Noticia(models.Model):
 
 class Noticia(models.Model):
     titular = models.CharField(max_length=200)
-    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, editable=False)
     cuerpo_noticia = RichTextField(_('Cuerpo Noticia'), null=True, blank=True)
     tipo_noticia = models.ForeignKey(Tipo_Noticia, on_delete=models.CASCADE, null=True, blank=True)
     imagen_principal = models.ImageField(

@@ -22,7 +22,11 @@
             </div>
             <h1 class="tnew-title">{{ recent_news.0.titular }}</h1>
         </div>
+        {% if recent_news.0.imagen_principal %}
         <img src="{{ recent_news.0.imagen_principal.url }}" alt="">
+        {% else %}
+        <img src="/media/dummy_img.jpg" alt="">
+        {% endif %}
         
     </div>
     <div class="sec-news">
