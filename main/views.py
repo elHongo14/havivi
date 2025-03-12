@@ -3,7 +3,7 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Galeria
+from .models import Galeria, Solicitudes
 from .forms import LoginForm, solicitudForm
 
 # Create your views here.
@@ -61,16 +61,28 @@ def reportes_view(request):
     return render(request, 'reportes.html')
 
 def solicitudes_view(request):
-    #if request.method == 'POST':
-    #    form = solicitudForm(request.POST)
-    #    if form.is_valid():
-    #        messages.add_message = "valido"
-    #   else:
-    #        messages.error = "invalido"
+    if request.method == 'GET':
+        form = solicitudForm()
+    if request.method == 'POST':
+        form = solicitudForm(request.POST, request.FILES)
+        file = request.FILES['archivo_solicitud']
+        if form.is_valid():
+            solicitud = Solicitudes.objects.create(
+                tipo=form.cleaned_data['tipo_solicitud'],
+                nombre=form.cleaned_data['titulo_solicitud'],
+                descripción=form.cleaned_data['descripcion_solicitud'],
+                objetivo=form.cleaned_data['objetivo_solicitud'],
+                archivo=file
+            )
+            solicitud.save()
+            messages.success(request, "¡Solicitud enviada con exito!")
+        else:
+            form = solicitudForm()
     context = {
-        
+        'form':form,
     }
     return render(request, 'solicitudes.html',context)
+
 #test XD
 
 # def navbar_view(request):

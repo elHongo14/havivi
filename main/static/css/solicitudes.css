@@ -8,8 +8,14 @@
     height: max-content;
 }
 #submit-solicitud{
-    border-color: #8D67BA ;
     border-style: solid ;
     color: white ;
     background-image: linear-gradient(90deg, #8D67BA, #C494EA);
+}
+#cerrar-mensaje{
+    border-style: solid ;
+    background-color: white;
+}
+#cerrar-mensaje:hover{
+    color: black;
 }

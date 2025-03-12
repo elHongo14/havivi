@@ -5,8 +5,18 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class solicitudForm(forms.Form):
-    titulo = forms.CharField()
-    descripcion = forms.CharField()
+    tipo_solicitud_opciones=[
+        ("Proyecto","Proyecto"),
+        ("Queja","Queja"),
+        ("Sugeriencia","Sugeriencia")
+    ]
+    tipo_solicitud = forms.CharField(widget=forms.Select(choices=tipo_solicitud_opciones, attrs={
+        "class" : "form-select"
+    }))
+    titulo_solicitud = forms.CharField()
+    descripcion_solicitud = forms.CharField(widget=forms.Textarea)
+    objetivo_solicitud = forms.CharField(widget=forms.Textarea)
+    archivo_solicitud = forms.FileField()
 
 # class ProfileForm(forms.ModelForm):
 #     class Meta:

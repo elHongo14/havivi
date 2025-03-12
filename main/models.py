@@ -22,3 +22,11 @@ class Galeria(models.Model):
     img_ubi = models.CharField(max_length=200)
     foto_bool = models.BooleanField(default=True)
     link = models.CharField(max_length=200, default="")
+
+class Solicitudes(models.Model):
+    tipo = models.CharField(max_length=100)
+    fecha = models.DateField(auto_now_add=True, auto_now=False)
+    nombre = models.CharField(max_length=100)
+    descripción = models.CharField(max_length=1000)
+    objetivo = models.CharField(max_length=100)
+    archivo = models.FileField(null=False)
