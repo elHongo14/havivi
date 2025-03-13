@@ -3,7 +3,7 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Galeria, Solicitudes
+from .models import Galeria, Solicitudes, Empleos
 from .forms import LoginForm, solicitudForm
 
 # Create your views here.
@@ -49,7 +49,10 @@ def galeria_view(request):
     })
 
 def bolsa_view(request):
-    return render(request, 'bolsa_de_empleo.html')
+    empleos = Empleos.objects.all()
+    return render(request, 'bolsa_de_empleo.html',{
+        'empleos' : empleos
+    })
 
 def capacitaciones_view(request):
     return render(request, 'capacitaciones.html')

@@ -30,3 +30,11 @@ class Solicitudes(models.Model):
     descripción = models.CharField(max_length=1000)
     objetivo = models.CharField(max_length=100)
     archivo = models.FileField(null=False)
+
+class Empleos(models.Model):
+    titulo = models.CharField(max_length=100)
+    área = models.CharField(max_length=100)
+    descripción = models.CharField(max_length=1000)
+    requisitos = models.CharField(max_length=500)
+    horario = models.CharField(max_length=100)
+    paga = models.CharField(max_length=100)
