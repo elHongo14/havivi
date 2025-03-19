@@ -3,8 +3,8 @@ from django.contrib.auth import login as auth_login, authenticate, logout as aut
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Galeria, Solicitudes, Empleos
-from .forms import LoginForm, solicitudForm
+from .models import Galeria, Solicitudes, Empleos, Solicitud_Empleo
+from .forms import LoginForm, solicitudForm, solicitud_Empleo_Form
 
 # Create your views here.
 
@@ -50,8 +50,25 @@ def galeria_view(request):
 
 def bolsa_view(request):
     empleos = Empleos.objects.all()
+    if request.method == 'GET':
+        form = solicitud_Empleo_Form()
+    if request.method == 'POST':
+        form = solicitud_Empleo_Form(request.POST, request.FILES)
+        file = request.FILES['archivo_curriculum']
+        if form.is_valid():
+            curriculum = Solicitud_Empleo.objects.create(
+                archivo = file,
+                empleo = Empleos.objects.get(id = form.cleaned_data['id_empleo'])
+            )
+            curriculum.save()
+            print(file)
+            print(empleos[int(form.cleaned_data['id_empleo'])-1].titulo)
+            messages.success(request, "¡Curriculum enviado con exito para "+ empleos[int(form.cleaned_data['id_empleo'])-1].titulo +"!")
+    else:
+        form = solicitud_Empleo_Form()
     return render(request, 'bolsa_de_empleo.html',{
-        'empleos' : empleos
+        'empleos' : empleos,
+        'form':form,
     })
 
 def capacitaciones_view(request):

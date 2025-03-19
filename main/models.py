@@ -38,3 +38,7 @@ class Empleos(models.Model):
     requisitos = models.CharField(max_length=500)
     horario = models.CharField(max_length=100)
     paga = models.CharField(max_length=100)
+
+class Solicitud_Empleo(models.Model):
+    archivo = models.FileField(null=False)
+    empleo = models.ForeignKey(Empleos, on_delete=models.CASCADE)

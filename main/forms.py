@@ -18,6 +18,10 @@ class solicitudForm(forms.Form):
     objetivo_solicitud = forms.CharField(widget=forms.Textarea)
     archivo_solicitud = forms.FileField()
 
+class solicitud_Empleo_Form(forms.Form):
+    archivo_curriculum = forms.FileField()
+    id_empleo = forms.CharField()
+
 # class ProfileForm(forms.ModelForm):
 #     class Meta:
 #         model = Usuario

@@ -25,7 +25,6 @@
                 <div class="card-header border-light fs-5">Fecha de solicitud:</div>      
                 <input required name="fecha_solicitud" type="date" id="fecha" class="form-control" readonly>
             </div>
-            
         </div>
         
         <div class="card text-light border-light bg-transparent my-4 mx-5">
@@ -49,7 +48,7 @@
         </div>
     </form>
     {% if messages %}
-    <div id="message" class="shadow-lg message z-3 card text-light border-light bg-transparent my-auto mx-auto position-absolute top-50 start-50 translate-middle">
+    <div id="message" class="shadow-lg message z-3 card text-light border-light bg-transparent my-5 mx-auto position-absolute top-0 start-50 translate-middle-x">
         {% for message in messages %}
         <div class="card-header border-light fs-5">{{ message }}</div>
         {% endfor %}

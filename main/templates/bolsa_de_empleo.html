@@ -35,10 +35,32 @@
                 <p class="col-2 text-start text-secondary my-2 mx-3 py-2 px-3 fs-5">Paga: </p>
                 <p class="col-9 text-start text-dark my-2 py-2 fs-0">{{empleos.paga}}</p>
             </div>
-            <input id="env-sol" class="my-2 mx-3 btn border-light float-end" type="button" value="Enviar solicitud">
+            <input id="{{empleos.pk}}" class="env-sol my-2 mx-3 btn border-light float-end" type="button" value="Enviar curriculum" data-bs-toggle="modal" data-bs-target="#soli-modal">
         </div>
     </div>
     {%endfor%}
+    <div class="modal fade" id="soli-modal" tabindex="1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered m-auto">
+            <div class="modal-content bg-transparent position-relative border-light">
+                <button type="button" class="z-1 bg-light-subtle btn-close position-absolute top-0 end-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                <form id="id-sol" class="modal-body p-0 card text-light bg-transparent m-0" action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <h2 class="card-header XD fs-5">Envía tu curriculum</h2>
+                    <input required type="file" class="form-control card-text focus-ring focus-ring-light" name="archivo_curriculum" id="archivo_curriculum">
+                    <input required readonly type="text" class="d-none" name="id_empleo" id="id_empleo" value="">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% if messages %}
+    <div id="message" class="shadow-lg message z-3 card text-light border-light bg-transparent my-auto mx-auto position-absolute top-50 start-50 translate-middle">
+        {% for message in messages %}
+        <div class="card-header border-light fs-5">{{ message }}</div>
+        {% endfor %}
+        <input id="cerrar-mensaje" class="btn" type="button" value="Aceptar">
+    </div>
+    {% endif %}
 </section>
 <section class="container-fluid bg-secondary">
     <div class="row p-5">
@@ -83,3 +105,27 @@
     </div>
 </section>
 {% endblock %}
+
+<script type="text/javascript">
+    const num = document.getElementsByClassName("env-sol")
+    const id_empleo = document.getElementById("id_empleo")
+    const archivo = document.getElementById("archivo_curriculum");
+    const cerrar = document.getElementById("cerrar-mensaje");
+    document.addEventListener("DOMContentLoaded", async()=>{
+        for (let i = 0; i < num.length; i++) {
+            num[i].addEventListener("click",()=>{
+                id_empleo.value = num[i].id
+                console.log(id_empleo.value)
+            })
+        }
+    });
+    archivo.addEventListener("input",()=>{
+        if ((archivo.files[0].size / 1e6)>30) {
+            alert("El archivo no debe ser mayor a 30 mb")
+            archivo.value="";
+        }
+    });
+    cerrar.addEventListener("click",()=>{
+        document.getElementById("message").classList.add("d-none");
+    });
+</script>
