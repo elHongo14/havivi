@@ -5,6 +5,7 @@ from .models import (
     Solicitudes,
     Empleos,
     Solicitud_Empleo,
+    Descargas,
 )
 
 # Register your models here.
@@ -29,8 +30,13 @@ class Solicitud_EmpleoAdmin(admin.ModelAdmin):
     list_display = ('archivo','empleo',)
     search_fields = ('empleo',)
 
+class DescargasAdmin(admin.ModelAdmin):
+    list_display = ('titulo','descripción','formato','peso','arch_ubi',)
+    search_fields = ('titulo','formato','arch_ubi',)
+
 admin.site.register(Prueba, PruebaAdmin)
 admin.site.register(Galeria, GaleriaAdmin)
 admin.site.register(Solicitudes,SolicitudesAdmin)
 admin.site.register(Empleos,EmpleosAdmin)
 admin.site.register(Solicitud_Empleo,Solicitud_EmpleoAdmin)
+admin.site.register(Descargas, DescargasAdmin)

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from .models import Galeria, Solicitudes, Empleos, Solicitud_Empleo
+from .models import Galeria, Solicitudes, Empleos, Solicitud_Empleo, Descargas
 from .forms import LoginForm, solicitudForm, solicitud_Empleo_Form
 
 # Create your views here.
@@ -44,8 +45,17 @@ def login_view(request):
 
 def galeria_view(request):
     galeria = Galeria.objects.all()
+    pagina = request.GET.get("page",1)
+    try:
+        paginación = Paginator(galeria, 60)
+        galeria = paginación.page(pagina)
+    except:
+        paginación = Paginator(galeria, 60)
+        galeria = paginación.page(1)
+        messages.info(request,"La página que intentas buscar no existe.")
     return render(request, 'galeria.html',{
-        'galeria' : galeria
+        'galeria' : galeria,
+        "paginación": paginación
     })
 
 def bolsa_view(request):
@@ -77,8 +87,11 @@ def capacitaciones_view(request):
 def donaciones_view(request):
     return render(request, 'donaciones.html')
 
-def reportes_view(request):
-    return render(request, 'reportes.html')
+def descargas_view(request):
+    descargas = Descargas.objects.all()
+    return render(request, 'descargas.html',{
+        'descargas' : descargas
+    })
 
 def solicitudes_view(request):
     if request.method == 'GET':

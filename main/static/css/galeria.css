@@ -19,11 +19,11 @@
     width: fit-content;
     height: fit-content;
 }
-.col{
+.foto{
     height: min-content;
     width: min-content;
     transition: 0.5s;
 }
-.col:hover{
+.foto:hover{
     box-shadow: 5px 5px 5px #4c4c4c;
 }

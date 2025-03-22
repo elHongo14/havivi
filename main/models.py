@@ -42,3 +42,10 @@ class Empleos(models.Model):
 class Solicitud_Empleo(models.Model):
     archivo = models.FileField(null=False)
     empleo = models.ForeignKey(Empleos, on_delete=models.CASCADE)
+
+class Descargas(models.Model):
+    titulo = models.CharField(max_length=100)
+    descripción = models.CharField(max_length=1000)
+    formato = models.CharField(max_length=100)
+    peso = models.CharField(max_length=100)
+    arch_ubi = models.CharField(max_length=100)

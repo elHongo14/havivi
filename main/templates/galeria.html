@@ -5,10 +5,11 @@
 {% block styles %}
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{% static '/css/galeria.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static '/css/message.css' %}" />
 {% endblock %}
 
 {% block content %}
-<section class="p-5" id="gal-section">
+<section class="pt-5 ps-4 pe-4 pb-2" id="gal-section">
         <ul class="nav btn-group container-fluid justify-content-center text-center mb-3" id="radio" role="group">
             <li class="nav-item btn-sele rounded-start">
                 <input type="radio" class="btn-check" name="btnradio" id="btnradio1" value="Todo" checked>
@@ -30,23 +31,67 @@
             {%for galeria in galeria%}
             {%if galeria.foto_bool is True%}
             <div class="foto fotos col bg-light m-1 mb-3 pt-3 px-3 pb-4 object-fit-cover align-self-center" data-bs-toggle="modal" data-bs-target="#imagenModal">
-                <img src="{% static galeria.img_ubi %}" class="object-fit-cover img-gal">
+                <img src="/media/galeria/{{galeria.img_ubi}}" class="object-fit-cover img-gal">
                 <h5 class="m-0 mt-1 text-start">{{galeria.nombre}}</h5>
                 <p class="text-start">{{galeria.descripción}}</p>
             </div>
             {%else%}
             <div class="foto videos col bg-light m-1 mb-3 pt-3 px-3 pb-4 object-fit-cover align-self-center" data-bs-toggle="modal" data-bs-target="#imagenModal">
-                <img src="{% static galeria.img_ubi %}" class="object-fit-cover img-gal">
+                <img src="/media/galeria/{{galeria.img_ubi}}" class="object-fit-cover img-gal">
                 <h5 class="m-0 mt-1 text-start">{{galeria.nombre}}</h5>
                 <p class="text-start">{{galeria.descripción}}<br>
                     <a class="text-start" target="_blank" rel="noopener noreferrer" href="{{galeria.link}}">Video</a>
                 </p>
             </div>
             {%endif%}
-
             {%endfor%}
         </div>
     </div>
+    
+    {% if paginación.num_pages > 1%}
+    <div class="d-flex justify-content-center mt-4">
+        <ul class="pagination">
+            {% if galeria.has_previous %}
+                {% if galeria.number > 2 %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="?page={{ galeria.previous_page_number }}">&lsaquo;</a></li>
+            {% endif %}
+            {% for page in paginación.page_range %}
+                {% if forloop.last and page != galeria.number and paginación.num_pages > 7 %} 
+                    {% if galeria.next_page_number != paginación.num_pages%}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ galeria.number | add:1}}">...</a>
+                    </li>
+                    {% endif %}
+                <li class="page-item">
+                        <a class="page-link" href="?page={{paginación.num_pages}}">{{paginación.num_pages}}</a>
+                </li>
+                {% endif %}
+                {% if page == galeria.number and page > 7 %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ page | add:-1 }}">...</a>
+                </li>    
+                {% endif %}
+                {% if page < 7 or page == galeria.number %}
+                <li class="page-item {% if page == galeria.number %}active{% endif %}">
+                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                </li>
+                {% endif %}
+            {% endfor %}
+            {% if galeria.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ galeria.next_page_number }}">&rsaquo;</a>
+                </li>
+                {% if galeria.number < paginación.num_pages|add:"-1" %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ paginación.num_pages }}">&raquo;</a>
+                </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
     <!-- Modal Foto-->
     <div class="modal fade my-1" id="imagenModal" tabindex="1" aria-hidden="true">
         <div class=" modal-dialog modal-dialog-centered modal-fullscreen m-auto">
@@ -58,6 +103,14 @@
             </div>
         </div>
     </div>
+    {% if messages %}
+    <div id="message" class="shadow-lg message z-3 card text-light border-light bg-transparent my-5 mx-auto position-absolute top-0 start-50 translate-middle-x">
+        {% for message in messages %}
+        <div id="message_header" class="card-header border-light fs-5">{{ message }}</div>
+        {% endfor %}
+        <input id="cerrar-mensaje" class="btn" type="button" value="Aceptar">
+    </div>
+    {% endif %}
 </section>
 <section class="container-fluid bg-secondary">
     <div class="row p-5">
@@ -104,10 +157,16 @@
 {% endblock %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static '/js/message.js' %}"></script>
 <script type="text/javascript">
     const foto = document.getElementsByClassName("foto");
     const fotos = document.getElementsByClassName("fotos");
     const videos = document.getElementsByClassName("videos");
+
+    const rad1 = document.getElementById("btnradio1");
+    const rad2 = document.getElementById("btnradio2");
+    const rad3 = document.getElementById("btnradio3");
+
     document.addEventListener("DOMContentLoaded",()=>{
         for (let i = 0; i < foto.length; i++) {
             let n = Math.random() * (2.91-(-2.90))+(-2.9);
@@ -118,9 +177,6 @@
             })
         }
     });
-    const rad1 = document.getElementById("btnradio1");
-    const rad2 = document.getElementById("btnradio2");
-    const rad3 = document.getElementById("btnradio3");
     
     var filtro = (value) =>{
         switch (value.originalTarget.value) {
