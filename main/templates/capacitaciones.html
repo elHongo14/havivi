@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block content %}
 <section>
     Capacitaciones
+    {% include 'layouts/message.html' %}
 </section>
+{% endblock %}
+{% include 'layouts/footer.html' %}

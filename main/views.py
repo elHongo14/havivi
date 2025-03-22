@@ -47,10 +47,10 @@ def galeria_view(request):
     galeria = Galeria.objects.all()
     pagina = request.GET.get("page",1)
     try:
-        paginación = Paginator(galeria, 60)
+        paginación = Paginator(galeria, 45)
         galeria = paginación.page(pagina)
     except:
-        paginación = Paginator(galeria, 60)
+        paginación = Paginator(galeria, 45)
         galeria = paginación.page(1)
         messages.info(request,"La página que intentas buscar no existe.")
     return render(request, 'galeria.html',{
@@ -60,6 +60,14 @@ def galeria_view(request):
 
 def bolsa_view(request):
     empleos = Empleos.objects.all()
+    pagina = request.GET.get("page",1)
+    try:
+        paginación = Paginator(empleos, 15)
+        empleos = paginación.page(pagina)
+    except:
+        paginación = Paginator(empleos, 15)
+        empleos = paginación.page(1)
+        messages.info(request,"La página que intentas buscar no existe.")
     if request.method == 'GET':
         form = solicitud_Empleo_Form()
     if request.method == 'POST':
@@ -78,6 +86,7 @@ def bolsa_view(request):
         form = solicitud_Empleo_Form()
     return render(request, 'bolsa_de_empleo.html',{
         'empleos' : empleos,
+        'paginación': paginación,
         'form':form,
     })
 
@@ -89,8 +98,17 @@ def donaciones_view(request):
 
 def descargas_view(request):
     descargas = Descargas.objects.all()
+    pagina = request.GET.get("page",1)
+    try:
+        paginación = Paginator(descargas, 30)
+        descargas = paginación.page(pagina)
+    except:
+        paginación = Paginator(descargas, 30)
+        descargas = paginación.page(1)
+        messages.info(request,"La página que intentas buscar no existe.")
     return render(request, 'descargas.html',{
-        'descargas' : descargas
+        'descargas' : descargas,
+        'paginación': paginación,
     })
 
 def solicitudes_view(request):

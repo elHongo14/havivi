@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/message.css' %}" />
+{% if messages %}
+    <div id="message" class="shadow-lg message z-3 card text-light border-light bg-transparent my-5 mx-auto position-absolute top-0 start-50 translate-middle-x">
+        {% for message in messages %}
+        <div id="message_header" class="card-header border-light fs-5">{{ message }}</div>
+        {% endfor %}
+        <input id="cerrar-mensaje" class="btn" type="button" value="Aceptar">
+    </div>
+{% endif %}
+<script type="text/javascript" src="{% static '/js/message.js' %}"></script>
