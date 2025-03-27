@@ -25,7 +25,7 @@ class Galeria(models.Model):
     link = models.CharField(max_length=200, default="")
 
 class Solicitudes(models.Model):
-    #usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=False)
     tipo = models.CharField(max_length=100)
     fecha = models.DateField(auto_now_add=True, auto_now=False)
     nombre = models.CharField(max_length=100)
@@ -42,6 +42,7 @@ class Empleos(models.Model):
     paga = models.CharField(max_length=100)
 
 class Solicitud_Empleo(models.Model):
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,null=False)
     archivo = models.FileField(null=False)
     empleo = models.ForeignKey(Empleos, on_delete=models.CASCADE)
 

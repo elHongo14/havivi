@@ -24,6 +24,7 @@ class solicitudForm(forms.Form):
 class solicitud_Empleo_Form(forms.Form):
     archivo_curriculum = forms.FileField()
     id_empleo = forms.CharField()
+    reCaptcha_solicitud = ReCaptchaField()
 
 # class ProfileForm(forms.ModelForm):
 #     class Meta:

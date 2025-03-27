@@ -68,13 +68,17 @@ def bolsa_view(request):
         paginación = Paginator(empleos, 15)
         empleos = paginación.page(1)
         messages.info(request,"La página que intentas buscar no existe.")
-    if request.method == 'GET':
-        form = solicitud_Empleo_Form()
+    context={
+        'objeto' : empleos,
+        'paginación': paginación,
+        'form':solicitud_Empleo_Form(),
+    }
     if request.method == 'POST':
         form = solicitud_Empleo_Form(request.POST, request.FILES)
         file = request.FILES['archivo_curriculum']
         if form.is_valid():
             curriculum = Solicitud_Empleo.objects.create(
+                usuario = request.user,
                 archivo = file,
                 empleo = Empleos.objects.get(id = form.cleaned_data['id_empleo'])
             )
@@ -83,13 +87,14 @@ def bolsa_view(request):
             print(empleos[int(form.cleaned_data['id_empleo'])-1].titulo)
             messages.success(request, "¡Curriculum enviado con exito para "+ empleos[int(form.cleaned_data['id_empleo'])-1].titulo +"!")
         else:
-            print("invalido")
             form = solicitud_Empleo_Form()
-    return render(request, 'bolsa_de_empleo.html',{
-        'objeto' : empleos,
-        'paginación': paginación,
-        'form':form,
-    })
+            context={
+                'objeto' : empleos,
+                'paginación': paginación,
+                'form':form,
+            }
+            messages.error(request, "La solicitud no fue enviada, completa todos los campos.")
+    return render(request, 'bolsa_de_empleo.html',context)
 
 def donaciones_view(request):
     return render(request, 'donaciones.html')
@@ -113,13 +118,12 @@ def solicitudes_view(request):
     context = {
         'form' : solicitudForm()
     }
-    print(request.user)
     if request.method == 'POST':
         form = solicitudForm(request.POST, request.FILES)
         file = request.FILES['archivo_solicitud']
         if form.is_valid():
-            #print(request.user)
             solicitud = Solicitudes.objects.create(
+                usuario = request.user,
                 tipo=form.cleaned_data['tipo_solicitud'],
                 nombre=form.cleaned_data['titulo_solicitud'],
                 descripción=form.cleaned_data['descripcion_solicitud'],
@@ -132,7 +136,6 @@ def solicitudes_view(request):
             context = {'form' : form}
             messages.error(request, "La solicitud no fue enviada, completa todos los campos.")
             return render(request, 'solicitudes.html',context)
-    
     return render(request, 'solicitudes.html',context)
 
 #test XD

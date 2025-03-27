@@ -49,10 +49,12 @@
                 <button type="button" class="z-1 bg-light-subtle btn-close position-absolute top-0 end-0" data-bs-dismiss="modal" aria-label="Close"></button>
                 <form id="id-sol" class="modal-body p-0 card text-light bg-transparent m-0" action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <h2 class="card-header XD fs-5">Envía tu curriculum</h2>
+                    <h2 class="card-header fs-5">Envía tu curriculum</h2>
                     <input required type="file" class="form-control card-text focus-ring focus-ring-light" name="archivo_curriculum" id="archivo_curriculum">
                     <input required readonly type="text" class="d-none" name="id_empleo" id="id_empleo" value="">
-                    <input required type="button" class="form-control focus-ring focus-ring-light" name="captcha" id="captcha" value="captcha placeholder">
+                    <div class="form-control d-flex justify-content-center w-auto bg-transparent border-0">
+                        {{form.reCaptcha_solicitud}}
+                    </div>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>

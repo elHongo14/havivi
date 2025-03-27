@@ -19,16 +19,16 @@ class GaleriaAdmin(admin.ModelAdmin):
     search_fields = ('nombre', 'img_ubi')
 
 class SolicitudesAdmin(admin.ModelAdmin):
-    list_display = ('tipo','fecha','nombre','descripción','objetivo','archivo')
-    search_fields = ('nombre','fecha','tipo')
+    list_display = ('usuario','tipo','fecha','nombre','descripción','objetivo','archivo')
+    search_fields = ('usuario','nombre','fecha','tipo')
 
 class EmpleosAdmin(admin.ModelAdmin):
     list_display = ('titulo','área','descripción','requisitos','horario','paga',)
     search_fields = ('titulo','área',)
 
 class Solicitud_EmpleoAdmin(admin.ModelAdmin):
-    list_display = ('archivo','empleo',)
-    search_fields = ('empleo',)
+    list_display = ('usuario','archivo','empleo',)
+    search_fields = ('usuario','empleo',)
 
 class DescargasAdmin(admin.ModelAdmin):
     list_display = ('titulo','descripción','formato','peso','arch_ubi',)
