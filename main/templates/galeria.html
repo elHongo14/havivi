@@ -27,70 +27,26 @@
     
     <div class="container-fluid text-center m-auto">
         <div class="row row-cols-4 justify-content-evenly m-auto">
-            {%for galeria in galeria%}
-            {%if galeria.foto_bool is True%}
+            {%for objeto in objeto%}
+            {%if objeto.foto_bool is True%}
             <div class="foto fotos col bg-light m-1 mb-3 pt-3 px-3 pb-4 object-fit-cover align-self-center" data-bs-toggle="modal" data-bs-target="#imagenModal">
-                <img src="/media/galeria/{{galeria.img_ubi}}" class="object-fit-cover img-gal">
-                <h5 class="m-0 mt-1 text-start">{{galeria.nombre}}</h5>
-                <p class="text-start">{{galeria.descripción}}</p>
+                <img src="/media/galeria/{{objeto.img_ubi}}" class="object-fit-cover img-gal">
+                <h5 class="m-0 mt-1 text-start">{{objeto.nombre}}</h5>
+                <p class="text-start">{{objeto.descripción}}</p>
             </div>
             {%else%}
             <div class="foto videos col bg-light m-1 mb-3 pt-3 px-3 pb-4 object-fit-cover align-self-center" data-bs-toggle="modal" data-bs-target="#imagenModal">
-                <img src="/media/galeria/{{galeria.img_ubi}}" class="object-fit-cover img-gal">
-                <h5 class="m-0 mt-1 text-start">{{galeria.nombre}}</h5>
-                <p class="text-start">{{galeria.descripción}}<br>
-                    <a class="text-start" target="_blank" rel="noopener noreferrer" href="{{galeria.link}}">Video</a>
+                <img src="/media/galeria/{{objeto.img_ubi}}" class="object-fit-cover img-gal">
+                <h5 class="m-0 mt-1 text-start">{{objeto.nombre}}</h5>
+                <p class="text-start">{{objeto.descripción}}<br>
+                    <a class="text-start" target="_blank" rel="noopener noreferrer" href="{{objeto.link}}">Video</a>
                 </p>
             </div>
             {%endif%}
             {%endfor%}
         </div>
     </div>
-    
-    {% if paginación.num_pages > 1%}
-    <div class="d-flex justify-content-center mt-4">
-        <ul class="pagination">
-            {% if galeria.has_previous %}
-                {% if galeria.number > 2 %}
-                <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
-                {% endif %}
-                <li class="page-item"><a class="page-link" href="?page={{ galeria.previous_page_number }}">&lsaquo;</a></li>
-            {% endif %}
-            {% for page in paginación.page_range %}
-                {% if forloop.last and page != galeria.number and paginación.num_pages > 7 %} 
-                    {% if galeria.next_page_number != paginación.num_pages%}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ galeria.number | add:1}}">...</a>
-                    </li>
-                    {% endif %}
-                <li class="page-item">
-                        <a class="page-link" href="?page={{paginación.num_pages}}">{{paginación.num_pages}}</a>
-                </li>
-                {% endif %}
-                {% if page == galeria.number and page > 7 %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page | add:-1 }}">...</a>
-                </li>    
-                {% endif %}
-                {% if page < 7 or page == galeria.number %}
-                <li class="page-item {% if page == galeria.number %}active{% endif %}">
-                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
-                </li>
-                {% endif %}
-            {% endfor %}
-            {% if galeria.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ galeria.next_page_number }}">&rsaquo;</a>
-                </li>
-                {% if galeria.number < paginación.num_pages|add:"-1" %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ paginación.num_pages }}">&raquo;</a>
-                </li>
-                {% endif %}
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
+    {% include 'layouts/paginación.html' %}
     <!-- Modal Foto-->
     <div class="modal fade my-1" id="imagenModal" tabindex="1" aria-hidden="true">
         <div class=" modal-dialog modal-dialog-centered modal-fullscreen m-auto">

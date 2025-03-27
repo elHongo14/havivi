@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
@@ -24,6 +25,7 @@ class Galeria(models.Model):
     link = models.CharField(max_length=200, default="")
 
 class Solicitudes(models.Model):
+    #usuario = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,)
     tipo = models.CharField(max_length=100)
     fecha = models.DateField(auto_now_add=True, auto_now=False)
     nombre = models.CharField(max_length=100)

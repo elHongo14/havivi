@@ -1,13 +1,10 @@
-#sol-section{
+#don-section {
     background-image: linear-gradient(#402F54, #C494EA);
 }
-.card-header,#card-fecha{
+.card-header{
     background-image: linear-gradient(45deg, #8D67BA, #C494EA);
 }
-#card-fecha{
-    height: max-content;
-}
-#submit-solicitud{
+#submit-donación{
     border-style: solid ;
     color: white ;
     background-image: linear-gradient(90deg, #8D67BA, #C494EA);

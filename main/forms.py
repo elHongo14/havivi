@@ -1,4 +1,5 @@
 from django import forms
+from django_recaptcha.fields import ReCaptchaField
 
 class LoginForm(forms.Form):
     username = forms.CharField()
@@ -17,6 +18,8 @@ class solicitudForm(forms.Form):
     descripcion_solicitud = forms.CharField(widget=forms.Textarea)
     objetivo_solicitud = forms.CharField(widget=forms.Textarea)
     archivo_solicitud = forms.FileField()
+    reCaptcha_solicitud = ReCaptchaField()
+
 
 class solicitud_Empleo_Form(forms.Form):
     archivo_curriculum = forms.FileField()

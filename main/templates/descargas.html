@@ -9,26 +9,26 @@
 
 <section class="p-5" id="des-section">
     <div class="row">
-        {%for descargas in descargas%}
+        {%for objeto in objeto%}
         <div class="col-6 justify-content-evenly m-auto">
             <div class="card text-light border-light bg-transparent my-4 mx-5 position-relative">
                 <div class="card-header border-light">
-                    <h2 class="text-start text-light">{{descargas.titulo}}</h1>
+                    <h2 class="text-start text-light">{{objeto.titulo}}</h1>
                 </div>
                 <div class="card-text bg-light">
                     <div class="d-block">
                         <p class=" text-start text-secondary my-0 mx-4 px-2 fs-5">Descripción: </p>
-                        <p class=" text-start text-dark mb-1 mx-4 px-2 fs-5 lh-sm">{{descargas.descripción}}</p>
+                        <p class=" text-start text-dark mb-1 mx-4 px-2 fs-5 lh-sm">{{objeto.descripción}}</p>
                     </div>
                     <div class="row gx-5 justify-content-start ms-2">
                         <p class="col-2 small text-start text-body-tertiary mx-0 my-0">Formato:</p>
                         <p class="col-2 small text-start text-body-tertiary mx-0 my-0">Peso:</p>    
                     </div>
                     <div class="row gx-5 justify-content-start ms-2">
-                        <p class="col-2 small text-start text-secondary mx-0 mb-2">{{descargas.formato}}</p>
-                        <p class="col-2 small text-start text-secondary mx-0 mb-2">{{descargas.peso}}</p>
+                        <p class="col-2 small text-start text-secondary mx-0 mb-2">{{objeto.formato}}</p>
+                        <p class="col-2 small text-start text-secondary mx-0 mb-2">{{objeto.peso}}</p>
                     </div>
-                    <a href="/media/descargas/{{descargas.arch_ubi}}" download class="link-light position-absolute bottom-0 end-0">
+                    <a href="/media/descargas/{{objeto.arch_ubi}}" download class="link-light position-absolute bottom-0 end-0">
                         <input id=" " class="descargar mb-2 mx-3 btn border-light float-end" type="button" value="Descargar archivo">
                     </a>
                 </div>
@@ -36,50 +36,7 @@
         </div>
         {%endfor%}
     </div>
-    {% if paginación.num_pages > 1%}
-    <div class="d-flex justify-content-center mt-4">
-        <ul class="pagination">
-            {% if descargas.has_previous %}
-                {% if descargas.number > 2 %}
-                <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
-                {% endif %}
-                <li class="page-item"><a class="page-link" href="?page={{ descargas.previous_page_number }}">&lsaquo;</a></li>
-            {% endif %}
-            {% for page in paginación.page_range %}
-                {% if forloop.last and page != descargas.number and paginación.num_pages > 7 %} 
-                    {% if descargas.next_page_number != paginación.num_pages%}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ descargas.number | add:1}}">...</a>
-                    </li>
-                    {% endif %}
-                <li class="page-item">
-                        <a class="page-link" href="?page={{paginación.num_pages}}">{{paginación.num_pages}}</a>
-                </li>
-                {% endif %}
-                {% if page == descargas.number and page > 7 %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page | add:-1 }}">...</a>
-                </li>    
-                {% endif %}
-                {% if page < 7 or page == descargas.number %}
-                <li class="page-item {% if page == descargas.number %}active{% endif %}">
-                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
-                </li>
-                {% endif %}
-            {% endfor %}
-            {% if descargas.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ descargas.next_page_number }}">&rsaquo;</a>
-                </li>
-                {% if descargas.number < paginación.num_pages|add:"-1" %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ paginación.num_pages }}">&raquo;</a>
-                </li>
-                {% endif %}
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
+    {% include 'layouts/paginación.html' %}
     {% include 'layouts/message.html' %}
 </section>
 {% include 'layouts/footer.html' %}

@@ -9,33 +9,37 @@
 
 {% block content %}
 <section class="px-5 py-1 position-relative" id="emp-section">
-    {%for empleos in empleos%}
+    {%for objeto in objeto%}
     <div class="card text-light border-light bg-transparent my-4 mx-5">
         <div class="card-header border-light">
-            <h2 class="text-start text-light">{{empleos.titulo}}</h1>
+            <h2 class="text-start text-light">{{objeto.titulo}}</h1>
         </div>
         <div class="card-text bg-light">
             <div class="row gx-5 justify-content-start my-3 mx-3 px-2 py-0">
                 <p class="col-2 text-start text-secondary my-0 px-3 fs-5">Área: </p>
-                <p class="col-10 text-start text-dark my-0 fs-0">{{empleos.área}}</p>
+                <p class="col-10 text-start text-dark my-0 fs-0">{{objeto.área}}</p>
             </div>
             <div class="row gx-5 justify-content-start my-3 mx-3 px-2 py-0">
                 <p class="col-2 text-start text-secondary my-0 px-3 fs-5">Descripción: </p>
-                <p class="col-10 text-start text-dark my-0 fs-0">{{empleos.descripción}}</p>
+                <p class="col-10 text-start text-dark my-0 fs-0">{{objeto.descripción}}</p>
             </div>
             <div class="row gx-5 justify-content-start my-3 mx-3 px-2 py-0">
                 <p class="col-2 text-start text-secondary my-0 px-3 fs-5">Requisitos: </p>
-                <p class="col-10 text-start text-dark my-0 fs-0">{{empleos.requisitos}}</p>
+                <p class="col-10 text-start text-dark my-0 fs-0">{{objeto.requisitos}}</p>
             </div>
             <div class="row gx-5 justify-content-start my-3 mx-3 px-2 py-0">
                 <p class="col-2 text-start text-secondary my-0 px-3 fs-5">Horarios: </p>
-                <p class="col-10 text-start text-dark my-0 fs-0">{{empleos.horario}}</p>
+                <p class="col-10 text-start text-dark my-0 fs-0">{{objeto.horario}}</p>
             </div>
             <div class="row gx-5 justify-content-start mt-3 mb-0 mx-3 px-2 py-0">
                 <p class="col-2 text-start text-secondary my-0 px-3 fs-5">Paga: </p>
-                <p class="col-10 text-start text-dark my-0 fs-0">{{empleos.paga}}</p>
+                <p class="col-10 text-start text-dark my-0 fs-0">{{objeto.paga}}</p>
             </div>
-            <input id="{{empleos.pk}}" class="env-sol mb-2 mx-3 btn border-light float-end" type="button" value="Enviar curriculum" data-bs-toggle="modal" data-bs-target="#soli-modal">
+            {% if user.is_authenticated %}
+            <input id="{{objeto.pk}}" class="env-sol mb-2 mx-3 btn border-light float-end" type="button" value="Enviar curriculum" data-bs-toggle="modal" data-bs-target="#soli-modal">
+            {% else %}
+            <input id="" disabled class="env-sol mb-2 mx-3 btn border-light float-end" type="button" value="Primero, inicia sesión">
+            {% endif %}
         </div>
     </div>
     {%endfor%}
@@ -48,55 +52,13 @@
                     <h2 class="card-header XD fs-5">Envía tu curriculum</h2>
                     <input required type="file" class="form-control card-text focus-ring focus-ring-light" name="archivo_curriculum" id="archivo_curriculum">
                     <input required readonly type="text" class="d-none" name="id_empleo" id="id_empleo" value="">
+                    <input required type="button" class="form-control focus-ring focus-ring-light" name="captcha" id="captcha" value="captcha placeholder">
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
             </div>
         </div>
     </div>
-    {% if paginación.num_pages > 1%}
-    <div class="d-flex justify-content-center mt-4">
-        <ul class="pagination">
-            {% if empleos.has_previous %}
-                {% if empleos.number > 2 %}
-                <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
-                {% endif %}
-                <li class="page-item"><a class="page-link" href="?page={{ empleos.previous_page_number }}">&lsaquo;</a></li>
-            {% endif %}
-            {% for page in paginación.page_range %}
-                {% if forloop.last and page != empleos.number and paginación.num_pages > 7 %} 
-                    {% if empleos.next_page_number != paginación.num_pages%}
-                    <li class="page-item">
-                        <a class="page-link" href="?page={{ empleos.number | add:1}}">...</a>
-                    </li>
-                    {% endif %}
-                <li class="page-item">
-                        <a class="page-link" href="?page={{paginación.num_pages}}">{{paginación.num_pages}}</a>
-                </li>
-                {% endif %}
-                {% if page == empleos.number and page > 7 %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page | add:-1 }}">...</a>
-                </li>    
-                {% endif %}
-                {% if page < 7 or page == empleos.number %}
-                <li class="page-item {% if page == empleos.number %}active{% endif %}">
-                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
-                </li>
-                {% endif %}
-            {% endfor %}
-            {% if empleos.has_next %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ empleos.next_page_number }}">&rsaquo;</a>
-                </li>
-                {% if empleos.number < paginación.num_pages|add:"-1" %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ paginación.num_pages }}">&raquo;</a>
-                </li>
-                {% endif %}
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
+    {% include 'layouts/paginación.html' %}
     {% include 'layouts/message.html' %}
 </section>
 {% endblock %}
@@ -109,7 +71,7 @@
         for (let i = 0; i < num.length; i++) {
             num[i].addEventListener("click",()=>{
                 id_empleo.value = num[i].id
-                console.log(id_empleo.value)
+                //console.log(id_empleo.value)
             })
         }
     });

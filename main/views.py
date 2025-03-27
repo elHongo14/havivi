@@ -54,7 +54,7 @@ def galeria_view(request):
         galeria = paginación.page(1)
         messages.info(request,"La página que intentas buscar no existe.")
     return render(request, 'galeria.html',{
-        'galeria' : galeria,
+        'objeto' : galeria,
         "paginación": paginación
     })
 
@@ -82,16 +82,14 @@ def bolsa_view(request):
             print(file)
             print(empleos[int(form.cleaned_data['id_empleo'])-1].titulo)
             messages.success(request, "¡Curriculum enviado con exito para "+ empleos[int(form.cleaned_data['id_empleo'])-1].titulo +"!")
-    else:
-        form = solicitud_Empleo_Form()
+        else:
+            print("invalido")
+            form = solicitud_Empleo_Form()
     return render(request, 'bolsa_de_empleo.html',{
-        'empleos' : empleos,
+        'objeto' : empleos,
         'paginación': paginación,
         'form':form,
     })
-
-def capacitaciones_view(request):
-    return render(request, 'capacitaciones.html')
 
 def donaciones_view(request):
     return render(request, 'donaciones.html')
@@ -107,17 +105,20 @@ def descargas_view(request):
         descargas = paginación.page(1)
         messages.info(request,"La página que intentas buscar no existe.")
     return render(request, 'descargas.html',{
-        'descargas' : descargas,
+        'objeto' : descargas,
         'paginación': paginación,
     })
 
 def solicitudes_view(request):
-    if request.method == 'GET':
-        form = solicitudForm()
+    context = {
+        'form' : solicitudForm()
+    }
+    print(request.user)
     if request.method == 'POST':
         form = solicitudForm(request.POST, request.FILES)
         file = request.FILES['archivo_solicitud']
         if form.is_valid():
+            #print(request.user)
             solicitud = Solicitudes.objects.create(
                 tipo=form.cleaned_data['tipo_solicitud'],
                 nombre=form.cleaned_data['titulo_solicitud'],
@@ -128,10 +129,10 @@ def solicitudes_view(request):
             solicitud.save()
             messages.success(request, "¡Solicitud enviada con exito!")
         else:
-            form = solicitudForm()
-    context = {
-        'form':form,
-    }
+            context = {'form' : form}
+            messages.error(request, "La solicitud no fue enviada, completa todos los campos.")
+            return render(request, 'solicitudes.html',context)
+    
     return render(request, 'solicitudes.html',context)
 
 #test XD

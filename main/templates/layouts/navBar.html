@@ -26,9 +26,6 @@
                     <button type="button" class="btn" onclick="solicitudesRed()">Solicitudes</button>
                 </li>
                 <li class="nav-item">
-                    <button type="button" class="btn" onclick="capacitacionesRed()">Capacitaciones</button>
-                </li>
-                <li class="nav-item">
                     <button type="button" class="btn" onclick="empleoRed()">Bolsa de empleo</button>
                 </li>
                 <li class="nav-item">
@@ -105,9 +102,6 @@
     }
     function empleoRed(){
         document.location.href = "{% url 'main:empleo' %}"
-    }
-    function capacitacionesRed(){
-        document.location.href = "{% url 'main:capacitaciones' %}"
     }
 </script>
 
