@@ -96,9 +96,6 @@ def bolsa_view(request):
             messages.error(request, "La solicitud no fue enviada, completa todos los campos.")
     return render(request, 'bolsa_de_empleo.html',context)
 
-def donaciones_view(request):
-    return render(request, 'donaciones.html')
-
 def descargas_view(request):
     descargas = Descargas.objects.all()
     pagina = request.GET.get("page",1)
