@@ -83,9 +83,7 @@ def bolsa_view(request):
                 empleo = Empleos.objects.get(id = form.cleaned_data['id_empleo'])
             )
             curriculum.save()
-            print(file)
-            print(empleos[int(form.cleaned_data['id_empleo'])-1].titulo)
-            messages.success(request, "¡Curriculum enviado con exito para "+ empleos[int(form.cleaned_data['id_empleo'])-1].titulo +"!")
+            messages.success(request, "¡Curriculum enviado con éxito para "+ empleos[int(form.cleaned_data['id_empleo'])-1].titulo +"!")
         else:
             form = solicitud_Empleo_Form()
             context={

@@ -144,5 +144,6 @@ BLEACH_ALLOWED_TAGS = ['p', 'h3', 'h4', 'em', 'strong', 'a', 'ul', 'ol', 'li', '
 BLEACH_ALLOWED_ATTRIBUTES = ['title', 'name']
 BLEACH_STRIP_TAGS = True
 
+# recaptcha keys
 RECAPTCHA_PUBLIC_KEY = '6LcJVwArAAAAAIhihm3FIJUPH1ttj1cKEg4gggEU'
 RECAPTCHA_PRIVATE_KEY = '6LcJVwArAAAAAKcNp2WTKV7eAvX4_a6Ngqm5ZznT'
